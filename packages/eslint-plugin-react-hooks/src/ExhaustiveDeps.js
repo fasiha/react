@@ -174,6 +174,14 @@ export default {
       // Next we'll define a few helpers that helps us
       // tell if some values don't have to be declared as deps.
 
+      const ALWAYS_STABLE_HOOKS = [
+        'useRef',
+        'useDispatch',
+        'useDynamicRef',
+        'useInvalidate',
+        'useIsMountedRef',
+      ];
+
       // Some are known to be stable based on Hook calls.
       // const [state, setState] = useState() / React.useState()
       //               ^^^ true for this reference
@@ -248,8 +256,8 @@ export default {
         }
         const id = def.node.id;
         const {name} = callee;
-        if (name === 'useRef' && id.type === 'Identifier') {
-          // useRef() return value is stable.
+        if (ALWAYS_STABLE_HOOKS.includes(name) && id.type === 'Identifier') {
+          // useRef() etc. return value is stable.
           return true;
         } else if (
           isUseEffectEventIdentifier(callee) &&
