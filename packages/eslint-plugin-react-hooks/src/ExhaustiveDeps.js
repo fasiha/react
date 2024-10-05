@@ -273,7 +273,8 @@ export default {
         } else if (
           name === 'useState' ||
           name === 'useReducer' ||
-          name === 'useActionState'
+          name === 'useActionState' ||
+          name === 'usePersistedState'
         ) {
           // Only consider second value in initializing tuple stable.
           if (
