@@ -615,6 +615,16 @@ const tests = {
     },
     {
       code: normalizeIndent`
+        function MyComponent() {
+          const [x, setX] = usePersistedState(123);
+          useEffect(() => {
+            setX(x => x + 1)
+          }, []);
+        }
+      `,
+    },
+    {
+      code: normalizeIndent`
         function MyComponent({ maybeRef2, foo }) {
           const definitelyRef1 = useRef();
           const definitelyRef2 = useRef();

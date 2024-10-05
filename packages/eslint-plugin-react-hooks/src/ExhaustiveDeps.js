@@ -245,7 +245,11 @@ export default {
           }
           // useEffectEvent() return value is always unstable.
           return true;
-        } else if (name === 'useState' || name === 'useReducer') {
+        } else if (
+          name === 'useState' ||
+          name === 'useReducer' ||
+          name === 'usePersistedState'
+        ) {
           // Only consider second value in initializing tuple stable.
           if (
             id.type === 'ArrayPattern' &&
