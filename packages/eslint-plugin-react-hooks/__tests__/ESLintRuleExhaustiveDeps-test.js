@@ -594,6 +594,27 @@ const tests = {
     },
     {
       code: normalizeIndent`
+        function MyComponent() {
+          const dispatch = useDispatch();
+          useEffect(() => {
+            dispatch('test')
+          }, []);
+        }
+      `,
+    },
+    {
+      code: normalizeIndent`
+        function MyComponent() {
+          const [x, setX] = useState(123);
+          const myRef = useDynamicRef(x);
+          useEffect(() => {
+            console.log(myRef.current)
+          }, []);
+        }
+      `,
+    },
+    {
+      code: normalizeIndent`
         function MyComponent({ maybeRef2, foo }) {
           const definitelyRef1 = useRef();
           const definitelyRef2 = useRef();
